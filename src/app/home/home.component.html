@@ -1,0 +1,14 @@
+<ul><h2>Lista de Sucursales</h2>
+
+  <li *ngFor="let sucursal of _clientes.sucursales; let i = index">
+      {{sucursal.nombre}}
+  </li>
+</ul>
+
+<h2>Lista de Posts</h2>
+<ul *ngIf="posts">
+  <li *ngFor="let post of posts; let i = index">
+      {{post.title}}
+  </li>
+</ul>
+<span *ngIf="!posts">Cargando posts...</span>

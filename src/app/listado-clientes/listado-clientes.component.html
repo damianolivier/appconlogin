@@ -1,0 +1,55 @@
+
+<h1>Sucursales:</h1>
+<ul *ngIf="mostrardiv == true"> 
+    <li *ngFor="let sucursal of sucursales; let i = index">
+        <b>Sucursal {{ i+1 }}</b>
+        <ul>
+            <li>Nombre: {{ sucursal.nombre }}</li>
+            <li>Ubicación: {{ sucursal.lugar }}</li>
+            <ul>Ventas
+                <li *ngFor="let venta of sucursal.ventas2019">
+                    {{ venta }}
+                </li>
+            </ul>
+        </ul>
+    </li>
+</ul>
+
+<table>
+    <tr>
+        <th *ngFor="let mes of _clientes.mesesnombres">{{ mes }}</th>
+    </tr>
+    <tr *ngFor="let sucursal of _clientes.sucursales; let i = index">
+        <td>{{sucursal.nombre}} <button (click)="_clientes.removeSucursal(i)">Eliminar</button></td>
+        <td *ngFor="let venta of sucursal.ventas2019; let j = index">
+            <input type="number" id="{{i}}+{{j}}" [(ngModel)]="venta"  value="{{venta}}" size="8"/>
+        </td>
+    </tr>
+</table>
+
+<h2>Crear Sucursal</h2>
+<form #formSucursal="ngForm" (ngSubmit)="onSubmit(); formSucursal.reset();">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="sucursalnueva._nombre" required>
+    <span *ngIf="nombre.touched && !nombre.valid">
+        El nombre es incorrecto.
+    </span>
+    <br/>
+
+    <label>Lugar:</label>
+    <input type="text" name="lugar" #lugar="ngModel" [(ngModel)]="sucursalnueva._lugar" required>
+    <span *ngIf="lugar.touched && !lugar.valid">
+        El lugar es incorrecto.
+    </span>
+    <br/>
+
+    <label>Teléfono:</label>
+    <input type="tel" name="tel" #tel="ngModel" [(ngModel)]="sucursalnueva._telefono" required pattern="[0-9()-]+">
+    <span *ngIf="tel.touched && !tel.valid">
+        El teléfono es incorrecto.
+    </span>
+    <br/>
+
+    <input type="submit" value="Crear" [disabled]="!formSucursal.form.valid">
+</form>
+

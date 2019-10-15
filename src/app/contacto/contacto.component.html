@@ -1,0 +1,28 @@
+<h2>Crear Sucursal</h2>
+<form #formContacto="ngForm" (ngSubmit)="onSubmit(); formContacto.reset();">
+    <label>Nombre y Apellido:</label>
+    <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="contacto._nombre" required>
+    <span *ngIf="nombre.touched && !nombre.valid">
+        El nombre es incorrecto.
+    </span>
+    <br/>
+
+    <label>Teléfono:</label>
+    <input type="telefono" name="telefono" #telefono="ngModel" [(ngModel)]="contacto._telefono" required pattern="[0-9()-]+">
+    <span *ngIf="telefono.touched && !telefono.valid">
+        El teléfono es incorrecto.
+    </span>
+    <br/>
+
+    <input type="submit" value="Crear" [disabled]="!formContacto.form.valid">
+</form>
+
+<h2>Contactos enviados</h2>
+<ul>
+  <li *ngFor="let contact of contactos; let i = index">
+      Nombre {{ contact._nombre }} <br/>
+      Nombre {{ contact._nombre }} <br/>
+      Nombre {{ contact._nombre }} <br/>
+  </li>
+</ul>
+<p>{{ contactos }}</p>

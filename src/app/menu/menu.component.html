@@ -1,0 +1,7 @@
+<nav class="menu">
+  <a [routerLink]="['/inicio']" [routerLinkActive]="['active']"><span>Inicio</span></a> | 
+  <a [routerLink]="['/sucursales']" [routerLinkActive]="['active']"><span>Ventas de Sucursales</span></a> | 
+  <a [routerLink]="['/contacto']" [routerLinkActive]="['active']"><span>Contacto</span></a> | 
+  <span>{{ fecha | date:'dd/MM/yyyy'}}</span> |
+  <button (click)="this.login.logout()" *ngIf="this.login.user_token">Cerrar sesión</button>
+</nav>
